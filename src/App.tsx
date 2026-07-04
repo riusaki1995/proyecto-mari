@@ -4,7 +4,7 @@ import { ModuleDetailPage } from './pages/ModuleDetailPage';
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/proyecto-mari">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/modulo/:id" element={<ModuleDetailPage />} />
