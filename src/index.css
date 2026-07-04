@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased text-gray-900;
+  }
+}
+
+@layer components {
+  .page-container {
+    @apply mx-auto w-3/4;
+  }
+
+  .module-detail-container {
+    @apply mx-auto w-full sm:w-[92%] md:w-[65%] md:max-w-4xl;
+  }
+}
