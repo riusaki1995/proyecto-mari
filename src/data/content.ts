@@ -255,12 +255,18 @@ export function getOverlayById(id: string): OverlayItem | undefined {
   return overlays.find((o) => o.id === id);
 }
 
+export function publicAsset(path: string) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const clean = path.replace(/^\//, '');
+  return `${base}/${clean.split('/').map(encodeURIComponent).join('/')}`;
+}
+
 export const appTabs = [
-  { id: 'juegos', label: 'Juegos', icon: '🎮' },
-  { id: 'overlays', label: 'Overlays', icon: '📺' },
-  { id: 'alertas', label: 'Alertas', icon: '🔊' },
-  { id: 'batallas', label: 'Batallas', icon: '⚔️' },
-  { id: 'webhook', label: 'Webhook', icon: '🔗' },
+  { id: 'juegos', label: 'Guante AI', icon: '🎬', video: 'Guante1.webm' },
+  { id: 'overlays', label: 'Guantess AI', icon: '🎬', video: 'guantess-alpha.webm' },
+  { id: 'alertas', label: 'Quiereme AI', icon: '🎬', video: 'Quiereme.webm' },
+  { id: 'batallas', label: 'Kitty AI', icon: '🎬', video: 'Kitty x3.webm' },
+  { id: 'webhook', label: 'Nivel 30 AI', icon: '🎬', video: 'nivel30.webm' },
 ] as const;
 
 export type AppTabId = (typeof appTabs)[number]['id'];
