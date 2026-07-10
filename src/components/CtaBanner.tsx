@@ -1,4 +1,4 @@
-import { PANEL_URL, whatsappBuyUrl } from '../data/content';
+import { DOWNLOAD_URL, whatsappBuyUrl } from '../data/content';
 
 export function CtaBanner() {
   return (
@@ -12,14 +12,14 @@ export function CtaBanner() {
               ¿Listo para el siguiente nivel?
             </h2>
             <p className="mt-4 text-lg text-white/60 max-w-xl mx-auto">
-              Únete a streamers que ya convierten cada regalo en contenido viral. Tu audiencia lo va a notar.
+              Descarga la app, configura tus overlays y convierte tu TikTok LIVE en un show interactivo que vende.
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow text-base px-10 py-4">
-                Quiero Livecoins Premium
+              <a href={DOWNLOAD_URL} className="btn-glow text-base px-10 py-4 !from-live-gold !to-amber-400 !text-live-bg hover:!shadow-glow-gold">
+                ⬇ Descargar Livecoins
               </a>
-              <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-10 py-4">
-                Probar gratis ahora
+              <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-10 py-4">
+                Quiero Premium
               </a>
             </div>
           </div>

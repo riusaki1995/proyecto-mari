@@ -1,4 +1,4 @@
-import { games } from '../data/content';
+import { gameImageUrl, games } from '../data/content';
 
 export function GamesGrid() {
   return (
@@ -11,39 +11,49 @@ export function GamesGrid() {
             Tu chat <span className="neon-text">juega contigo</span>
           </h2>
           <p className="section-sub mx-auto">
-            Más de 15 títulos conectados. Cada regalo puede spawnear enemigos, dar items, ejecutar comandos o cambiar el juego en vivo.
+            Los mismos títulos que en la app Livecoins. Cada regalo puede spawnear enemigos, dar items o ejecutar comandos en vivo.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div className="juegos-grid">
           {games.map((game) => (
-            <article key={game.id} className="game-card group">
-              <div className={`absolute inset-0 bg-gradient-to-br ${game.gradient} opacity-60`} />
-              <div className="relative">
-                <div className="flex items-start justify-between">
-                  <span className="text-4xl drop-shadow-lg">{game.emoji}</span>
-                  {game.premium && (
-                    <span className="text-[10px] font-display font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-live-gold/20 text-live-gold border border-live-gold/30">
-                      Premium
-                    </span>
-                  )}
-                </div>
-                <h3 className="mt-3 font-display text-lg font-bold">{game.name}</h3>
-                <p className="mt-1.5 text-sm text-white/55 leading-snug">{game.desc}</p>
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {game.tags.map((tag) => (
-                    <span key={tag} className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-black/30 text-white/50 border border-white/10">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            <article
+              key={game.id}
+              className="juego-card group"
+              data-game={game.id}
+              aria-label={game.name}
+              title={game.name}
+            >
+              {game.badge && <span className="juego-version">{game.badge}</span>}
+
+              {game.webp ? (
+                <picture>
+                  <source srcSet={gameImageUrl(game.webp)} type="image/webp" />
+                  <img
+                    src={gameImageUrl(game.img)}
+                    alt={game.name}
+                    className="juego-card-img"
+                    loading="lazy"
+                    width={600}
+                    height={840}
+                  />
+                </picture>
+              ) : (
+                <img
+                  src={gameImageUrl(game.img)}
+                  alt={game.name}
+                  className="juego-card-img"
+                  loading="lazy"
+                  width={600}
+                  height={840}
+                />
+              )}
             </article>
           ))}
         </div>
 
         <p className="text-center mt-10 text-sm text-white/40">
-          Los juegos marcados <span className="text-live-gold font-semibold">Premium</span> se desbloquean con el plan de $12 USD/mes.
+          Los juegos con badge <span className="text-live-gold font-semibold">Premium</span> se desbloquean con el plan de $12 USD/mes.
         </p>
       </div>
     </section>

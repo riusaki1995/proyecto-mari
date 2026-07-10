@@ -1,4 +1,5 @@
-import { planFree, planPremium, PREMIUM_PRICE, PANEL_URL, whatsappBuyUrl } from '../data/content';
+import { APP_VERSION, DOWNLOAD_URL, planFree, planPremium, PREMIUM_PRICE, whatsappBuyUrl } from '../data/content';
+import { Download } from 'lucide-react';
 
 export function Pricing() {
   return (
@@ -12,7 +13,7 @@ export function Pricing() {
             Empieza gratis, <span className="neon-text">escala a Premium</span>
           </h2>
           <p className="section-sub mx-auto">
-            Prueba sin pagar. Cuando quieras desbloquear todo, un solo plan sin sorpresas.
+            Descarga la app gratis. Premium desbloquea todo por {PREMIUM_PRICE}/mes.
           </p>
         </div>
 
@@ -32,13 +33,9 @@ export function Pricing() {
                 </li>
               ))}
             </ul>
-            <a
-              href={PANEL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline mt-8 w-full justify-center"
-            >
-              Empezar gratis
+            <a href={DOWNLOAD_URL} className="btn-outline mt-8 w-full justify-center gap-2">
+              <Download size={18} />
+              Descargar App v{APP_VERSION}
             </a>
           </div>
 

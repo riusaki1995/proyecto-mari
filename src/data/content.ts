@@ -1,16 +1,54 @@
 export const WHATSAPP_NUMBER = '522202079074';
 export const PANEL_URL = 'https://livecoins.onrender.com';
 export const PREMIUM_PRICE = '$12 USD';
+export const APP_VERSION = '1.6.15';
+export const DOWNLOAD_URL =
+  'https://github.com/riusaki1995/.exe/releases/download/v1.0.79/Livecoins.Setup.1.6.15.exe';
+export const DOWNLOAD_SIZE = '~943 MB';
+export const RELEASES_URL = 'https://github.com/riusaki1995/.exe/releases/tag/v1.0.79';
+
+export function overlayEmbedUrl(embedPath: string, urlParams?: Record<string, string>) {
+  const base = PANEL_URL.replace(/\/$/, '');
+  const path = embedPath.startsWith('/') ? embedPath : `/${embedPath}`;
+  const url = new URL(path, base);
+  url.searchParams.set('embed', '1');
+  if (urlParams) {
+    for (const [key, val] of Object.entries(urlParams)) {
+      url.searchParams.set(key, val);
+    }
+  }
+  return url.toString();
+}
 
 export function whatsappBuyUrl(username = '') {
   const msg = `Hola, quiero comprar el Plan Premium (${PREMIUM_PRICE}/mes) de Livecoins.${username ? ` Mi usuario es: ${username}` : ''}`;
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 }
 
+/** Rutas bajo /screenshots/ (public/) */
+export const screenshots = {
+  login: 'screenshots/login.png',
+  panel: 'screenshots/login.png',
+  giftvs: 'screenshots/overlay-giftvs.png',
+  winscounter: 'screenshots/overlay-winscounter.png',
+  joinlive: 'screenshots/overlay-joinlive.png',
+  meta: 'screenshots/overlay-meta.png',
+  batallalikes: 'screenshots/overlay-batallalikes.png',
+} as const;
+
+export const galleryShots = [
+  { kind: 'image' as const, src: screenshots.login, title: 'Panel Livecoins', tag: 'App' },
+  { kind: 'overlay' as const, overlayId: 'habibi' },
+  { kind: 'overlay' as const, overlayId: 'perrito' },
+  { kind: 'overlay' as const, overlayId: 'batallalikes' },
+  { kind: 'overlay' as const, overlayId: 'topaltneon' },
+  { kind: 'overlay' as const, overlayId: 'jarron' },
+];
+
 export const stats = [
   { value: '40+', label: 'Overlays para OBS' },
-  { value: '15+', label: 'Minijuegos conectados' },
-  { value: '∞', label: 'Acciones con Premium' },
+  { value: '19', label: 'Minijuegos conectados' },
+  { value: APP_VERSION, label: 'Versión actual App PC' },
   { value: '3:4', label: 'Formato TikTok LIVE' },
 ];
 
@@ -43,64 +81,174 @@ export const features = [
   {
     icon: '💻',
     title: 'App de escritorio (.exe)',
-    desc: 'Ejecuta juegos locales desde tu PC con relay a la nube. Ideal para streamers pro.',
+    desc: `Instala Livecoins ${APP_VERSION} en Windows. Juegos locales + relay a la nube.`,
   },
 ];
+
+export function gameImageUrl(path: string) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}${path.startsWith('/') ? path : `/${path}`}`;
+}
 
 export type GameItem = {
   id: string;
   name: string;
-  emoji: string;
-  desc: string;
-  gradient: string;
+  /** Ruta en el servidor Livecoins, ej. /img/minecraft-card.jpg */
+  img: string;
+  webp?: string;
   premium?: boolean;
-  tags: string[];
+  badge?: string;
 };
 
+/** Mismo orden y arte que la pestaña Juegos del panel Livecoins */
 export const games: GameItem[] = [
-  { id: 'minecraft', name: 'Minecraft Java', emoji: '⛏️', desc: 'RCON, ServerTap y mods interactivos.', gradient: 'from-green-600/40 to-emerald-900/60', tags: ['RCON', 'Mods'] },
-  { id: 'mcparkour', name: 'MC Parkour', emoji: '🏃', desc: 'Obstáculos y spawns con regalos.', gradient: 'from-lime-500/30 to-green-900/50', tags: ['Parkour'] },
-  { id: 'mckoth', name: 'MC KOTH', emoji: '👑', desc: 'Rey de la colina controlado por viewers.', gradient: 'from-yellow-500/30 to-orange-900/50', tags: ['PvP'] },
-  { id: 'mcfarm', name: 'MC Farm', emoji: '🌾', desc: 'Granja interactiva en directo.', gradient: 'from-amber-500/30 to-yellow-900/50', tags: ['Survival'] },
-  { id: 'mcshooter', name: 'MC Shooter', emoji: '🔫', desc: 'Disparos y efectos con el chat.', gradient: 'from-red-500/30 to-rose-900/50', tags: ['Action'] },
-  { id: 'bedrock', name: 'Minecraft Bedrock', emoji: '🪨', desc: 'Conexión con mundos Bedrock.', gradient: 'from-teal-500/30 to-cyan-900/50', tags: ['Bedrock'] },
-  { id: 'sandbox', name: 'MC Sandbox', emoji: '🧱', desc: 'Modo creativo interactivo.', gradient: 'from-sky-500/30 to-blue-900/50', tags: ['Creative'] },
-  { id: 'roblox', name: 'Roblox', emoji: '🟥', desc: 'Teclas y acciones remotas.', gradient: 'from-red-600/40 to-gray-900/60', tags: ['Keys'] },
-  { id: 'mario', name: 'Mario SMBX2', emoji: '🍄', desc: 'Spawns de enemigos y power-ups.', gradient: 'from-red-500/40 to-blue-900/60', tags: ['Platform'] },
-  { id: 'smb3', name: 'Super Mario Bros 3', emoji: '🎮', desc: 'Acciones clásicas en NES.', gradient: 'from-orange-500/40 to-red-900/60', tags: ['Retro'] },
-  { id: 'mari0', name: 'Mari0', emoji: '🌀', desc: 'Portales y power-ups con regalos.', gradient: 'from-blue-500/40 to-purple-900/60', tags: ['Portal'] },
-  { id: 'pvz', name: 'Plants vs Zombies', emoji: '🌻', desc: 'Zombies, soles y comandos toolkit.', gradient: 'from-lime-500/40 to-green-900/60', tags: ['Tower'] },
-  { id: 'pvzhybrid', name: 'PvZ Hybrid', emoji: '🧟', desc: 'Versión hybrid con PvZ Tools.', gradient: 'from-purple-500/40 to-green-900/60', premium: true, tags: ['Premium'] },
-  { id: 'repo', name: 'R.E.P.O.', emoji: '👻', desc: 'Spawns y caos cooperativo.', gradient: 'from-violet-500/40 to-indigo-900/60', premium: true, tags: ['Horror'] },
-  { id: 'l4d', name: 'Left 4 Dead 2', emoji: '🧟‍♂️', desc: 'Infectados y eventos en partida.', gradient: 'from-red-700/40 to-gray-900/60', premium: true, tags: ['Co-op'] },
-  { id: 'ctr', name: 'Crash Team Racing', emoji: '🏎️', desc: 'Ítems y efectos en carrera.', gradient: 'from-orange-500/40 to-yellow-900/60', premium: true, tags: ['Racing'] },
-  { id: 'gdash', name: 'Geometry Dash', emoji: '🔷', desc: 'Efectos sincronizados al ritmo.', gradient: 'from-cyan-500/40 to-blue-900/60', premium: true, tags: ['Rhythm'] },
-  { id: 'mslug', name: 'Metal Slug', emoji: '💣', desc: 'Acciones del overlay oficial.', gradient: 'from-yellow-500/40 to-orange-900/60', tags: ['Arcade'] },
+  { id: 'minecraft', name: 'Minecraft', img: '/img/minecraft-card.jpg', webp: '/img/minecraft-card.webp' },
+  { id: 'mcparkour', name: 'Minecraft Parkour', img: '/img/mcparkour-card.jpg', webp: '/img/mcparkour-card.webp' },
+  { id: 'mckoth', name: 'Minecraft KOTH', img: '/img/mckoth-card.jpg', webp: '/img/mckoth-card.webp' },
+  { id: 'mcfarm', name: 'Minecraft Farm', img: '/img/mcfarm-card.jpg', webp: '/img/mcfarm-card.webp' },
+  { id: 'mcshooter', name: 'Minecraft Shooters', img: '/img/mcshooter-card.png' },
+  { id: 'bedrock', name: 'Cubo TNT · Bedrock', img: '/img/bedrock-card.jpg', webp: '/img/bedrock-card.webp' },
+  { id: 'sandbox', name: 'Sandbox', img: '/img/sandbox-card.jpg', webp: '/img/sandbox-card.webp' },
+  { id: 'roblox', name: 'Golden Keycaps · Roblox', img: '/img/roblox.png' },
+  { id: 'roblox3', name: 'Roblox Parkour', img: '/img/roblox3.png' },
+  { id: 'mario', name: 'Super Mario Bros X2', img: '/img/mariobros-card.jpg', webp: '/img/mariobros-card.webp' },
+  { id: 'smb3', name: 'Super Mario Bros. 3', img: '/img/smb3-card.png' },
+  { id: 'mari0', name: 'Mari0', img: '/img/mari0-card.png', badge: 'Nueva versión' },
+  { id: 'pvz', name: 'Plants vs Zombies', img: '/img/plantasvszombies-card.jpg', webp: '/img/plantasvszombies-card.webp' },
+  { id: 'pvzhybrid', name: 'PvZ Hybrid', img: '/img/pvzhybrid-card.jpg', webp: '/img/pvzhybrid-card.webp', premium: true },
+  { id: 'repo', name: 'R.E.P.O.', img: '/img/repo-card.jpg', webp: '/img/repo-card.webp', premium: true },
+  { id: 'l4d', name: 'Left 4 Dead 2', img: '/img/l4d2-card.png', premium: true },
+  { id: 'ctr', name: 'Crash Team Racing', img: '/img/ctr-card.jpg', webp: '/img/ctr-card.webp', premium: true },
+  { id: 'mslug', name: 'Metal Slug', img: '/img/metalslug.png' },
+  { id: 'gdash', name: 'Geometry Dash', img: '/img/gdash/gdash-card.jpg', webp: '/img/gdash/gdash-card.webp', premium: true },
 ];
+
+export type OverlayTestMessage = {
+  kind: string;
+  type?: string;
+  count?: number;
+  [key: string]: unknown;
+};
 
 export type OverlayItem = {
   id: string;
   name: string;
   emoji: string;
   desc: string;
-  preview: 'counter' | 'battle' | 'join' | 'meta' | 'gift' | 'rank' | 'timer';
-  accent: string;
+  /** Ruta del overlay en Livecoins, igual que en el panel (data-path) */
+  embedPath: string;
+  /** Params extra (ej. preview=1 en jarrón/perrito para demo en bucle) */
+  urlParams?: Record<string, string>;
+  /** Altura de la vista previa en tarjetas (px). Por defecto 320. */
+  previewHeight?: number;
+  /** Escala visual en tarjeta (0–1). Solo para overlays que se ven grandes en embed. */
+  previewZoom?: number;
+  /** Equivalente al botón Testear del panel vía postMessage */
+  testMessage?: OverlayTestMessage;
+  /** Repetir animación de prueba cada N ms */
+  testLoopMs?: number;
 };
 
 export const overlays: OverlayItem[] = [
-  { id: 'joinlive', name: 'Join Live', emoji: '🔴', desc: 'Animación de bienvenida al entrar al live.', preview: 'join', accent: '#ff2d87' },
-  { id: 'winscounter', name: 'Contador de victorias', emoji: '🏆', desc: 'Lleva la cuenta de wins en pantalla.', preview: 'counter', accent: '#fbbf24' },
-  { id: 'giftvs', name: 'Batalla de regalos', emoji: '⚔️', desc: 'Dos bandos compiten con regalos en vivo.', preview: 'battle', accent: '#a855f7' },
-  { id: 'batallalikes', name: 'Batalla de likes', emoji: '❤️', desc: 'Barra VS animada con likes del chat.', preview: 'battle', accent: '#ff2d87' },
-  { id: 'meta', name: 'Meta de monedas', emoji: '🎯', desc: 'Progreso hacia tu meta del stream.', preview: 'meta', accent: '#00f0ff' },
-  { id: 'topdonor', name: 'Top donador', emoji: '👑', desc: 'Destaca al mejor donador del live.', preview: 'rank', accent: '#fbbf24' },
-  { id: 'giftshowcase', name: 'Showcase de regalos', emoji: '🎁', desc: 'Muestra regalos recibidos con estilo.', preview: 'gift', accent: '#a855f7' },
-  { id: 'alertaregalo', name: 'Alerta de regalo', emoji: '🔔', desc: 'Pop-up cuando llega un regalo.', preview: 'gift', accent: '#00f0ff' },
-  { id: 'timer', name: 'Timer interactivo', emoji: '⏱️', desc: 'Cuenta regresiva que suma tiempo con interacción.', preview: 'timer', accent: '#22c55e' },
-  { id: 'toplikes', name: 'Top likes', emoji: '📊', desc: 'Ranking de likes en tiempo real.', preview: 'rank', accent: '#ff2d87' },
-  { id: 'coinmatch', name: 'Coin Match', emoji: '🪙', desc: 'Minijuego visual de monedas en overlay.', preview: 'counter', accent: '#fbbf24' },
-  { id: 'joinlivemc', name: 'Join Live Minecraft', emoji: '⛏️', desc: 'Bienvenida temática Minecraft.', preview: 'join', accent: '#22c55e' },
+  {
+    id: 'habibi',
+    name: 'Habibi Top Donador',
+    emoji: '✨',
+    desc: 'Ranking top donador estilo Habibi con fuegos artificiales.',
+    embedPath: '/habibi-top.html',
+    urlParams: { v: '7' },
+  },
+  {
+    id: 'top1fire',
+    name: 'Top 1 Donador Fuego',
+    emoji: '🔥',
+    desc: 'El mejor donador con efectos de fuego en pantalla.',
+    embedPath: '/top1fire.html',
+  },
+  {
+    id: 'perrito',
+    name: 'Perrito',
+    emoji: '🐶',
+    desc: 'Cada regalo cae dentro del perrito con física real hasta desbordarse.',
+    embedPath: '/perrito.html',
+    urlParams: { preview: '1' },
+  },
+  {
+    id: 'gcounter',
+    name: 'Contador de meta',
+    emoji: '🎯',
+    desc: 'Barra de progreso hacia la meta de monedas del live.',
+    embedPath: '/gcounter.html',
+  },
+  {
+    id: 'jarron',
+    name: 'Jarrón',
+    emoji: '🏺',
+    desc: 'Regalos caen como canicas dentro del frasco con física.',
+    embedPath: '/jarron.html',
+    urlParams: { preview: '1' },
+  },
+  {
+    id: 'vaquita',
+    name: 'Vaquita',
+    emoji: '🐮',
+    desc: 'Alcancía vaquita que se llena con los regalos del chat.',
+    embedPath: '/vaquita.html',
+    urlParams: { preview: '1' },
+  },
+  {
+    id: 'marranito',
+    name: 'Marranito',
+    emoji: '🐷',
+    desc: 'Alcancía marranito con acumulación física de regalos.',
+    embedPath: '/marranito.html',
+    urlParams: { preview: '1' },
+  },
+  {
+    id: 'batallalikes',
+    name: 'Batalla de likes',
+    emoji: '❤️',
+    desc: 'Barra VS animada con likes del chat en tiempo real.',
+    embedPath: '/batallalikes.html',
+  },
+  {
+    id: 'batallaregalos',
+    name: 'Batalla de regalos',
+    emoji: '⚔️',
+    desc: 'Competencia de regalos entre dos bandos en el live.',
+    embedPath: '/batallaregalos.html',
+  },
+  {
+    id: 'topaltneon',
+    name: 'Top Likes / Diamantes Neón',
+    emoji: '💎',
+    desc: 'Alterna ranking de likes y diamantes con estilo neón.',
+    embedPath: '/topalt-rank-neon.html',
+  },
+  {
+    id: 'winscounter',
+    name: 'Contador de victorias',
+    emoji: '🏆',
+    desc: 'Lleva la cuenta de wins con animación al subir.',
+    embedPath: '/contador-wins.html',
+    testMessage: { kind: 'wins_counter', type: 'test' },
+    testLoopMs: 4500,
+  },
+  {
+    id: 'alertafollow',
+    name: 'Alerta nuevo seguidor',
+    emoji: '👋',
+    desc: 'Pop-up animado cuando alguien nuevo te sigue.',
+    embedPath: '/alerta-seguidor.html',
+    previewZoom: 0.82,
+    testMessage: { kind: 'alertafollow', type: 'test' },
+    testLoopMs: 6500,
+  },
 ];
+
+export function getOverlayById(id: string): OverlayItem | undefined {
+  return overlays.find((o) => o.id === id);
+}
 
 export const appTabs = [
   { id: 'juegos', label: 'Juegos', icon: '🎮' },
@@ -118,6 +266,7 @@ export const planFree = [
   'Overlays esenciales',
   'Juegos principales (Mario, PvZ, MC…)',
   '1 perfil de configuración',
+  'Panel web gratis',
 ];
 
 export const planPremium = [
@@ -126,5 +275,13 @@ export const planPremium = [
   '40+ overlays desbloqueados',
   'TTS de TikTok',
   'Perfiles ilimitados',
-  'Soporte prioritario',
+  'App PC con todos los juegos',
+  'Soporte prioritario por WhatsApp',
+];
+
+export const downloadSteps = [
+  'Descarga el instalador para Windows',
+  'Ejecuta Livecoins Setup y sigue el asistente',
+  'Inicia sesión con tu cuenta de TikTok LIVE',
+  'Conecta overlays en OBS y configura tus juegos',
 ];

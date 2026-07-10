@@ -1,4 +1,10 @@
-import { stats, whatsappBuyUrl, PANEL_URL } from '../data/content';
+import { APP_VERSION, DOWNLOAD_URL, screenshots, stats, whatsappBuyUrl, PANEL_URL } from '../data/content';
+import { OverlayIframePreview } from './OverlayIframePreview';
+
+function asset(path: string) {
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}${path.replace(/^\//, '')}`;
+}
 
 export function Hero() {
   return (
@@ -12,7 +18,7 @@ export function Hero() {
           <div className="animate-slide-up">
             <div className="inline-flex items-center gap-2 rounded-full border border-live-cyan/30 bg-live-cyan/5 px-4 py-1.5 text-sm font-semibold text-live-cyan mb-6">
               <span className="h-2 w-2 rounded-full bg-live-cyan animate-pulse" />
-              TikTok LIVE · Interactivo · Profesional
+              TikTok LIVE · v{APP_VERSION} · Windows
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-wide">
@@ -29,11 +35,11 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow text-base px-8 py-4">
-                🚀 Obtener Premium
+              <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-amber-400 !text-live-bg hover:!shadow-glow-gold">
+                ⬇ Descargar App PC
               </a>
-              <a href="#app" className="btn-outline text-base px-8 py-4">
-                Ver la app
+              <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-8 py-4">
+                Comprar Premium
               </a>
             </div>
 
@@ -47,62 +53,41 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative animate-float hidden sm:block">
+          <div className="relative animate-float">
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-live-cyan/20 to-live-purple/20 blur-2xl" />
-            <div className="relative glass-card p-1 rounded-2xl shadow-glow-purple scanline">
-              <div className="rounded-xl bg-live-panel overflow-hidden">
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-live-border/50 bg-live-bg/80">
-                  <span className="h-3 w-3 rounded-full bg-red-500" />
-                  <span className="h-3 w-3 rounded-full bg-yellow-500" />
-                  <span className="h-3 w-3 rounded-full bg-green-500" />
-                  <span className="ml-2 text-xs text-white/40 font-mono">livecoins · panel</span>
-                  <span className="ml-auto text-xs px-2 py-0.5 rounded bg-live-gold/20 text-live-gold font-semibold">App PC</span>
-                </div>
-                <div className="p-4 space-y-3">
-                  <div className="flex gap-2 flex-wrap">
-                    {['🎮 Juegos', '📺 Overlays', '🔊 Alertas', '⚔️ Batallas'].map((t) => (
-                      <span key={t} className="text-xs px-3 py-1.5 rounded-lg bg-live-card border border-live-border/50 text-white/70">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {[
-                      { e: '🍄', n: 'Mario SMBX2', c: 'Spawn Goomba x5' },
-                      { e: '🌻', n: 'PvZ', c: 'Zombie +100 sole' },
-                      { e: '⛏️', n: 'Minecraft', c: 'TNT en jugador' },
-                      { e: '🏎️', n: 'Crash CTR', c: 'Bomba azul' },
-                    ].map((g) => (
-                      <div key={g.n} className="rounded-lg bg-live-card/80 border border-live-border/40 p-3 hover:border-live-cyan/40 transition-colors">
-                        <div className="text-2xl">{g.e}</div>
-                        <div className="text-sm font-semibold mt-1">{g.n}</div>
-                        <div className="text-xs text-live-cyan/80 mt-0.5">{g.c}</div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="rounded-lg bg-gradient-to-r from-live-purple/20 to-live-pink/20 border border-live-purple/30 p-3 flex items-center justify-between">
-                    <span className="text-sm">🎁 Regalo recibido: Rosa × 10</span>
-                    <span className="text-xs font-display text-live-gold animate-pulse">EN VIVO</span>
-                  </div>
-                </div>
-              </div>
+            <div className="relative glass-card p-1.5 rounded-2xl shadow-glow-purple scanline">
+              <img
+                src={asset(screenshots.login)}
+                alt="Panel Livecoins — pantalla de acceso"
+                className="rounded-xl w-full h-auto border border-live-border/30"
+              />
             </div>
 
-            <div className="absolute -bottom-6 -left-6 glass-card px-4 py-3 shadow-glow">
-              <div className="text-xs text-white/50 uppercase">Overlay activo</div>
-              <div className="font-display text-live-cyan font-bold">Batalla de regalos ⚔️</div>
+            <div className="absolute -bottom-6 -left-4 sm:-left-6 glass-card p-3 shadow-glow max-w-[200px] hidden sm:block">
+              <OverlayIframePreview
+                embedPath="/perrito.html"
+                urlParams={{ preview: '1' }}
+                title="Perrito"
+                height={140}
+                showLabel={false}
+              />
+              <div className="text-xs text-white/50 uppercase mt-2">Vista previa</div>
+              <div className="font-display text-live-cyan font-bold text-sm">Perrito</div>
             </div>
 
             <div className="absolute -top-4 -right-4 glass-card px-4 py-3 shadow-glow-gold">
-              <div className="text-xs text-white/50 uppercase">Espectadores</div>
-              <div className="font-display text-live-gold font-bold text-xl">+847 🔥</div>
+              <div className="text-xs text-white/50 uppercase">Versión</div>
+              <div className="font-display text-live-gold font-bold text-xl">v{APP_VERSION}</div>
             </div>
           </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-white/40 hover:text-live-cyan transition-colors">
-            ¿Ya tienes cuenta? Abre el panel web →
+        <div className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-white/40">
+          <a href="#descargar" className="hover:text-live-gold transition-colors">
+            Instalador Windows →
+          </a>
+          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="hover:text-live-cyan transition-colors">
+            Panel web →
           </a>
         </div>
       </div>

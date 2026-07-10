@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { PANEL_URL, whatsappBuyUrl } from '../data/content';
+import { Download, Menu, X } from 'lucide-react';
+import { DOWNLOAD_URL, PANEL_URL, whatsappBuyUrl } from '../data/content';
 
 const links = [
   { href: '#inicio', label: 'Inicio' },
+  { href: '#descargar', label: 'Descargar' },
   { href: '#app', label: 'App' },
   { href: '#juegos', label: 'Juegos' },
   { href: '#overlays', label: 'Overlays' },
@@ -36,7 +37,7 @@ export function Header() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 lg:gap-8 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
@@ -49,11 +50,12 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline text-xs py-2.5 px-4">
-            Abrir panel
+          <a href={DOWNLOAD_URL} className="btn-outline text-xs py-2.5 px-4 gap-1.5">
+            <Download size={16} />
+            Descargar
           </a>
           <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow text-xs py-2.5 px-5">
-            Comprar ⭐
+            Premium ⭐
           </a>
         </div>
 
@@ -80,8 +82,12 @@ export function Header() {
                 {l.label}
               </a>
             ))}
+            <a href={DOWNLOAD_URL} className="btn-outline mt-2 justify-center gap-2">
+              <Download size={18} />
+              Descargar App
+            </a>
             <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline mt-2 justify-center">
-              Abrir panel
+              Panel web
             </a>
             <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow mt-2 justify-center">
               Comprar Premium
