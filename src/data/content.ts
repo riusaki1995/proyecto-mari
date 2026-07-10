@@ -27,9 +27,14 @@ export function whatsappBuyUrl(username = '') {
 
 /** Rutas bajo /screenshots/ (public/) */
 export const screenshots = {
-  login: 'screenshots/login.png',
-  panel: 'screenshots/login.png',
-  giftvs: 'screenshots/overlay-giftvs.png',
+  login: 'screenshots/panel-juegos.png',
+  panel: 'screenshots/panel-juegos.png',
+  videosAi: 'screenshots/videos-ai.png',
+  acciones: 'screenshots/acciones.png',
+  regalos: 'screenshots/regalos.png',
+  alertasSonoras: 'screenshots/alertas-sonoras.png',
+  chatTts: 'screenshots/chat-tts.png',
+  temporizador: 'screenshots/temporizador.png',
   winscounter: 'screenshots/overlay-winscounter.png',
   joinlive: 'screenshots/overlay-joinlive.png',
   meta: 'screenshots/overlay-meta.png',
@@ -37,12 +42,12 @@ export const screenshots = {
 } as const;
 
 export const galleryShots = [
-  { kind: 'image' as const, src: screenshots.login, title: 'Panel Livecoins', tag: 'App' },
-  { kind: 'overlay' as const, overlayId: 'habibi' },
-  { kind: 'overlay' as const, overlayId: 'perrito' },
-  { kind: 'overlay' as const, overlayId: 'batallalikes' },
-  { kind: 'overlay' as const, overlayId: 'topaltneon' },
-  { kind: 'overlay' as const, overlayId: 'jarron' },
+  { kind: 'image' as const, src: screenshots.videosAi, title: 'Videos AI', tag: 'App' },
+  { kind: 'image' as const, src: screenshots.acciones, title: 'Acciones', tag: 'App' },
+  { kind: 'image' as const, src: screenshots.regalos, title: 'Regalos', tag: 'App' },
+  { kind: 'image' as const, src: screenshots.alertasSonoras, title: 'Alertas sonoras', tag: 'App' },
+  { kind: 'image' as const, src: screenshots.chatTts, title: 'Chat TTS', tag: 'App' },
+  { kind: 'image' as const, src: screenshots.temporizador, title: 'Temporizador', tag: 'App' },
 ];
 
 export const stats = [
@@ -60,8 +65,8 @@ export const features = [
   },
   {
     icon: '📺',
-    title: 'Overlays listos para OBS',
-    desc: 'Copia el enlace, pégalo en OBS o TikTok Studio. Contadores, metas, batallas y alertas visuales.',
+    title: 'Overlays listos para OBS / Live Studio',
+    desc: 'Copia el enlace, pégalo en OBS o Live Studio. Contadores, metas, batallas y alertas visuales.',
   },
   {
     icon: '🔊',

@@ -72,7 +72,7 @@ export function AppShowcase() {
                 ) : (
                   <img
                     src={asset(screenshots.login)}
-                    alt="Panel Livecoins"
+                    alt="Panel Livecoins — pestaña Juegos"
                     className="w-full rounded-xl border border-live-border/30 object-contain max-h-[400px] mx-auto bg-black"
                   />
                 )}

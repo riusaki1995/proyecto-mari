@@ -58,7 +58,7 @@ export function Hero() {
             <div className="relative glass-card p-1.5 rounded-2xl shadow-glow-purple scanline">
               <img
                 src={asset(screenshots.login)}
-                alt="Panel Livecoins — pantalla de acceso"
+                alt="Panel Livecoins — pestaña Juegos con minijuegos"
                 className="rounded-xl w-full h-auto border border-live-border/30"
               />
             </div>
