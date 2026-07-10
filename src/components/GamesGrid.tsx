@@ -17,7 +17,7 @@ export function GamesGrid() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {games.map((game) => (
-            <article key={game.id} className="game-card">
+            <article key={game.id} className="game-card group">
               <div className={`absolute inset-0 bg-gradient-to-br ${game.gradient} opacity-60`} />
               <div className="relative">
                 <div className="flex items-start justify-between">
