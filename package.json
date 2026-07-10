@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "capture": "node scripts/capture-screenshots.mjs"
+    "capture": "node scripts/capture-screenshots.mjs",
+    "sync:game-images": "node scripts/sync-game-images.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.469.0",

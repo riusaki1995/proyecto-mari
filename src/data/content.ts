@@ -3,9 +3,9 @@ export const PANEL_URL = 'https://livecoins.onrender.com';
 export const PREMIUM_PRICE = '$12 USD';
 export const APP_VERSION = '1.6.15';
 export const DOWNLOAD_URL =
-  'https://github.com/riusaki1995/.exe/releases/download/v1.0.79/Livecoins.Setup.1.6.15.exe';
+  'https://github.com/Converse1995/llivecoin/releases/download/livecoins/Livecoins.Setup.1.6.15.exe';
 export const DOWNLOAD_SIZE = '~943 MB';
-export const RELEASES_URL = 'https://github.com/riusaki1995/.exe/releases/tag/v1.0.79';
+export const RELEASES_URL = 'https://github.com/Converse1995/llivecoin/releases';
 
 export function overlayEmbedUrl(embedPath: string, urlParams?: Record<string, string>) {
   const base = PANEL_URL.replace(/\/$/, '');
