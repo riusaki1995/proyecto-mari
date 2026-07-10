@@ -1,4 +1,4 @@
-import { APP_VERSION, DOWNLOAD_SIZE, DOWNLOAD_URL, RELEASES_URL, downloadSteps } from '../data/content';
+import { APP_VERSION, DOWNLOAD_SIZE, DOWNLOAD_URL, PANEL_URL, downloadSteps } from '../data/content';
 import { Download, Monitor, Shield } from 'lucide-react';
 
 export function DownloadSection() {
@@ -24,8 +24,8 @@ export function DownloadSection() {
                 <Download size={20} />
                 Descargar para Windows
               </a>
-              <a href={RELEASES_URL} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-6 py-4">
-                Ver en GitHub
+              <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-6 py-4">
+                Versión web
               </a>
             </div>
 

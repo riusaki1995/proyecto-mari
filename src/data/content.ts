@@ -7,6 +7,21 @@ export const DOWNLOAD_URL =
 export const DOWNLOAD_SIZE = '~943 MB';
 export const RELEASES_URL = 'https://github.com/Converse1995/llivecoin/releases';
 
+export const TUTORIAL_VIDEO_ID = 'YBLo2J0khbo';
+export const TUTORIAL_VIDEO_START = 15;
+export const TUTORIAL_VIDEO_URL = `https://www.youtube.com/watch?v=${TUTORIAL_VIDEO_ID}&t=${TUTORIAL_VIDEO_START}s`;
+export const tutorialThumbnailUrl = `https://img.youtube.com/vi/${TUTORIAL_VIDEO_ID}/hqdefault.jpg`;
+
+export function tutorialEmbedUrl(autoplay = false) {
+  const params = new URLSearchParams({
+    start: String(TUTORIAL_VIDEO_START),
+    rel: '0',
+    modestbranding: '1',
+  });
+  if (autoplay) params.set('autoplay', '1');
+  return `https://www.youtube.com/embed/${TUTORIAL_VIDEO_ID}?${params}`;
+}
+
 export function overlayEmbedUrl(embedPath: string, urlParams?: Record<string, string>) {
   const base = PANEL_URL.replace(/\/$/, '');
   const path = embedPath.startsWith('/') ? embedPath : `/${embedPath}`;
@@ -40,15 +55,6 @@ export const screenshots = {
   meta: 'screenshots/overlay-meta.png',
   batallalikes: 'screenshots/overlay-batallalikes.png',
 } as const;
-
-export const galleryShots = [
-  { kind: 'image' as const, src: screenshots.videosAi, title: 'Videos AI', tag: 'App' },
-  { kind: 'image' as const, src: screenshots.acciones, title: 'Acciones', tag: 'App' },
-  { kind: 'image' as const, src: screenshots.regalos, title: 'Regalos', tag: 'App' },
-  { kind: 'image' as const, src: screenshots.alertasSonoras, title: 'Alertas sonoras', tag: 'App' },
-  { kind: 'image' as const, src: screenshots.chatTts, title: 'Chat TTS', tag: 'App' },
-  { kind: 'image' as const, src: screenshots.temporizador, title: 'Temporizador', tag: 'App' },
-];
 
 export const stats = [
   { value: '40+', label: 'Overlays para OBS' },
