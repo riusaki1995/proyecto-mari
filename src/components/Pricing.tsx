@@ -40,7 +40,7 @@ export function Pricing() {
           </div>
 
           <div className="relative glass-card p-8 flex flex-col border-live-gold/40 shadow-glow-gold">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-live-gold to-amber-400 text-live-bg text-xs font-display font-bold uppercase tracking-wider">
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-live-gold to-live-gold-dark text-[#2a1c00] text-xs font-display font-bold uppercase tracking-wider">
               ⭐ Recomendado
             </div>
             <div className="text-sm font-display uppercase tracking-widest text-live-gold">Plan Premium</div>
@@ -61,7 +61,7 @@ export function Pricing() {
               href={whatsappBuyUrl()}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-glow mt-8 w-full justify-center !from-live-gold !to-amber-400 !text-live-bg hover:!shadow-glow-gold"
+              className="btn-glow mt-8 w-full justify-center !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold"
             >
               Comprar Premium por WhatsApp
             </a>

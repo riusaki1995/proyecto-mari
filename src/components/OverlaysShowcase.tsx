@@ -20,7 +20,7 @@ export function OverlaysShowcase() {
           {overlays.map((ov) => (
             <article
               key={ov.id}
-              className="group glass-card overflow-hidden hover:border-live-pink/40 hover:shadow-glow-purple transition-all duration-300 hover:-translate-y-1"
+              className="group glass-card overflow-hidden hover:border-live-pink/40 hover:shadow-glow-pink transition-all duration-300 hover:-translate-y-1"
             >
               <div className="px-4 pt-4">
                 <OverlayIframePreview

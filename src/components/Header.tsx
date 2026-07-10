@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Download, Menu, X } from 'lucide-react';
 import { DOWNLOAD_URL, PANEL_URL, whatsappBuyUrl } from '../data/content';
+import { Logo } from './Logo';
 
 const links = [
   { href: '#inicio', label: 'Inicio' },
@@ -28,13 +29,8 @@ export function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <a href="#inicio" className="flex items-center gap-2.5 group">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-live-cyan to-live-purple font-display text-lg font-black text-live-bg shadow-glow transition-transform group-hover:scale-105">
-            L
-          </span>
-          <span className="font-display text-xl font-bold tracking-widest">
-            LIVE<span className="text-live-cyan">COINS</span>
-          </span>
+        <a href="#inicio" className="group transition-opacity hover:opacity-90">
+          <Logo />
         </a>
 
         <nav className="hidden items-center gap-6 lg:gap-8 md:flex">

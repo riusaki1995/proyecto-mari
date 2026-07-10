@@ -2,7 +2,7 @@ import { features } from '../data/content';
 
 export function Features() {
   return (
-    <section className="section-pad bg-live-panel/20">
+    <section className="section-pad">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-14">
           <span className="text-live-cyan font-display text-sm font-semibold uppercase tracking-[0.2em]">Funciones</span>

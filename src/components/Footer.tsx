@@ -1,18 +1,12 @@
 import { APP_VERSION, DOWNLOAD_URL, PANEL_URL, RELEASES_URL } from '../data/content';
+import { Logo } from './Logo';
 
 export function Footer() {
   return (
     <footer className="border-t border-live-border/40 bg-live-bg/80">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-live-cyan to-live-purple font-display font-black text-live-bg">
-              L
-            </span>
-            <span className="font-display font-bold tracking-widest">
-              LIVE<span className="text-live-cyan">COINS</span>
-            </span>
-          </div>
+          <Logo compact />
 
           <nav className="flex flex-wrap justify-center gap-6 text-sm text-white/50">
             <a href="#descargar" className="hover:text-live-gold transition-colors">Descargar v{APP_VERSION}</a>

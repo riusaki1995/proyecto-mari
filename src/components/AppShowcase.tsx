@@ -20,7 +20,7 @@ export function AppShowcase() {
 
         <div className="grid lg:grid-cols-5 gap-8 items-start">
           <div className="lg:col-span-3 relative">
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-live-cyan/30 via-live-purple/20 to-live-pink/30 blur-sm" />
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-live-cyan/30 to-live-pink/30 blur-sm" />
             <div className="relative glass-card rounded-2xl overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-3 bg-live-bg/90 border-b border-live-border/50">
                 <span className="h-2.5 w-2.5 rounded-full bg-red-500/80" />

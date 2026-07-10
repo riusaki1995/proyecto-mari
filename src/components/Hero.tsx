@@ -1,4 +1,4 @@
-import { APP_VERSION, DOWNLOAD_URL, screenshots, stats, whatsappBuyUrl, PANEL_URL } from '../data/content';
+import { APP_VERSION, DOWNLOAD_URL, screenshots, stats, whatsappBuyUrl } from '../data/content';
 import { OverlayIframePreview } from './OverlayIframePreview';
 
 function asset(path: string) {
@@ -9,9 +9,8 @@ function asset(path: string) {
 export function Hero() {
   return (
     <section id="inicio" className="relative min-h-screen flex items-center section-pad pt-32 overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-40" />
       <div className="absolute top-1/4 -left-32 h-96 w-96 rounded-full bg-live-cyan/10 blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full bg-live-purple/10 blur-[120px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 -right-32 h-96 w-96 rounded-full bg-live-pink/10 blur-[120px] animate-pulse-glow" />
 
       <div className="relative mx-auto max-w-7xl w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -35,7 +34,7 @@ export function Hero() {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-amber-400 !text-live-bg hover:!shadow-glow-gold">
+              <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold">
                 ⬇ Descargar App PC
               </a>
               <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-outline text-base px-8 py-4">
@@ -54,8 +53,8 @@ export function Hero() {
           </div>
 
           <div className="relative animate-float">
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-live-cyan/20 to-live-purple/20 blur-2xl" />
-            <div className="relative glass-card p-1.5 rounded-2xl shadow-glow-purple scanline">
+            <div className="absolute -inset-4 rounded-3xl bg-gradient-to-r from-live-cyan/20 to-live-pink/20 blur-2xl" />
+            <div className="relative glass-card p-1.5 rounded-2xl shadow-glow scanline">
               <img
                 src={asset(screenshots.login)}
                 alt="Panel Livecoins — pestaña Juegos con minijuegos"
@@ -80,15 +79,6 @@ export function Hero() {
               <div className="font-display text-live-gold font-bold text-xl">v{APP_VERSION}</div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-white/40">
-          <a href="#descargar" className="hover:text-live-gold transition-colors">
-            Instalador Windows →
-          </a>
-          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="hover:text-live-cyan transition-colors">
-            Panel web →
-          </a>
         </div>
       </div>
     </section>

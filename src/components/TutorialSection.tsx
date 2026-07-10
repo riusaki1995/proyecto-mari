@@ -21,7 +21,7 @@ export function TutorialSection() {
         </div>
 
         <div className="relative">
-          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-live-cyan/25 to-live-purple/25 blur-md" />
+          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-live-cyan/25 to-live-pink/25 blur-md" />
           <div className="relative glass-card overflow-hidden rounded-2xl p-3 sm:p-4">
             <div className="relative aspect-video w-full overflow-hidden rounded-xl border border-live-border/30 bg-black">
               {playing ? (

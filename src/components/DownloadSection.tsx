@@ -1,10 +1,9 @@
 import { APP_VERSION, DOWNLOAD_SIZE, DOWNLOAD_URL, PANEL_URL, downloadSteps } from '../data/content';
-import { Download, Monitor, Shield } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 export function DownloadSection() {
   return (
     <section id="descargar" className="section-pad relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-live-purple/5 via-transparent to-live-cyan/5" />
       <div className="relative mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <div>
@@ -20,7 +19,7 @@ export function DownloadSection() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-amber-400 !text-live-bg hover:!shadow-glow-gold">
+              <a href={DOWNLOAD_URL} className="btn-glow text-base px-8 py-4 !from-live-gold !to-live-gold-dark !text-[#2a1c00] hover:!shadow-glow-gold">
                 <Download size={20} />
                 Descargar para Windows
               </a>
@@ -32,19 +31,6 @@ export function DownloadSection() {
             <p className="mt-4 text-sm text-white/40">
               {DOWNLOAD_SIZE} · Versión {APP_VERSION} · Windows 10/11
             </p>
-
-            <div className="mt-8 grid sm:grid-cols-3 gap-3">
-              {[
-                { icon: Monitor, label: 'Panel + juegos locales' },
-                { icon: Shield, label: 'Instalador firmado' },
-                { icon: Download, label: 'Actualizaciones en GitHub' },
-              ].map(({ icon: Icon, label }) => (
-                <div key={label} className="glass-card p-4 flex items-center gap-3 text-sm text-white/65">
-                  <Icon size={18} className="text-live-cyan shrink-0" />
-                  {label}
-                </div>
-              ))}
-            </div>
           </div>
 
           <div className="glass-card p-6 sm:p-8 border-live-gold/20">

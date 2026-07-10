@@ -2,11 +2,10 @@ import { gameImageUrl, games } from '../data/content';
 
 export function GamesGrid() {
   return (
-    <section id="juegos" className="section-pad relative bg-live-panel/30">
-      <div className="absolute inset-0 grid-bg opacity-20" />
+    <section id="juegos" className="section-pad relative">
       <div className="relative mx-auto max-w-7xl">
         <div className="text-center mb-14">
-          <span className="text-live-purple font-display text-sm font-semibold uppercase tracking-[0.2em]">Minijuegos</span>
+          <span className="text-live-cyan font-display text-sm font-semibold uppercase tracking-[0.2em]">Minijuegos</span>
           <h2 className="section-title mt-3">
             Tu chat <span className="neon-text">juega contigo</span>
           </h2>
