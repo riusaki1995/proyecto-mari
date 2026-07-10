@@ -1,38 +1,94 @@
-import { GraduationCap, TreeDeciduous } from 'lucide-react';
-import { Link, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { PANEL_URL, whatsappBuyUrl } from '../data/content';
+
+const links = [
+  { href: '#inicio', label: 'Inicio' },
+  { href: '#app', label: 'App' },
+  { href: '#juegos', label: 'Juegos' },
+  { href: '#overlays', label: 'Overlays' },
+  { href: '#planes', label: 'Planes' },
+];
 
 export function Header() {
-  const { pathname } = useLocation();
-  const isModulePage = pathname.startsWith('/modulo/');
-  const containerClass = isModulePage ? 'module-detail-container' : 'page-container';
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white/90 backdrop-blur-md">
-      <div className={`${containerClass} flex items-center justify-between gap-3 py-3 sm:py-4`}>
-        <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-2.5">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-elarbol-600 to-emerald-400 shadow-sm sm:h-9 sm:w-9">
-            <TreeDeciduous className="h-4 w-4 text-white sm:h-5 sm:w-5" strokeWidth={2.5} />
-          </div>
-          <div className="flex min-w-0 items-center gap-1 sm:gap-1.5">
-            <span className="truncate text-xs font-bold tracking-tight text-gray-900 sm:text-base">
-              AGENCIA ELÁRBOL
-            </span>
-            <span className="hidden text-gray-300 sm:inline">/</span>
-            <span className="hidden items-center gap-1 text-sm font-semibold text-elarbol-700 sm:flex">
-              <GraduationCap className="h-4 w-4" />
-              ACADEMY
-            </span>
-          </div>
-        </Link>
-
-        <a
-          href="#postularse"
-          className="shrink-0 rounded-full bg-gradient-to-r from-elarbol-700 via-emerald-600 to-teal-500 px-3 py-2 text-xs font-semibold text-white shadow-md shadow-emerald-500/20 transition hover:shadow-lg hover:shadow-emerald-500/30 hover:brightness-105 sm:px-5 sm:py-2.5 sm:text-sm"
-        >
-          <span className="sm:hidden">Postularse</span>
-          <span className="hidden sm:inline">Postularse ahora</span>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-live-bg/90 backdrop-blur-xl border-b border-live-border/50 shadow-lg' : 'bg-transparent'
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <a href="#inicio" className="flex items-center gap-2.5 group">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-live-cyan to-live-purple font-display text-lg font-black text-live-bg shadow-glow transition-transform group-hover:scale-105">
+            L
+          </span>
+          <span className="font-display text-xl font-bold tracking-widest">
+            LIVE<span className="text-live-cyan">COINS</span>
+          </span>
         </a>
+
+        <nav className="hidden items-center gap-8 md:flex">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm font-semibold uppercase tracking-wider text-white/70 transition-colors hover:text-live-cyan"
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-3 md:flex">
+          <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline text-xs py-2.5 px-4">
+            Abrir panel
+          </a>
+          <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow text-xs py-2.5 px-5">
+            Comprar ⭐
+          </a>
+        </div>
+
+        <button
+          type="button"
+          className="rounded-lg p-2 text-white/80 hover:bg-white/10 md:hidden"
+          onClick={() => setOpen(!open)}
+          aria-label="Menú"
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {open && (
+        <div className="border-t border-live-border/50 bg-live-panel/95 backdrop-blur-xl md:hidden">
+          <nav className="flex flex-col gap-1 px-4 py-4">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="rounded-lg px-4 py-3 font-semibold text-white/80 hover:bg-white/5 hover:text-live-cyan"
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </a>
+            ))}
+            <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="btn-outline mt-2 justify-center">
+              Abrir panel
+            </a>
+            <a href={whatsappBuyUrl()} target="_blank" rel="noopener noreferrer" className="btn-glow mt-2 justify-center">
+              Comprar Premium
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }

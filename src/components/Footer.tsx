@@ -1,21 +1,33 @@
-import { TreeDeciduous } from 'lucide-react';
+import { PANEL_URL } from '../data/content';
 
 export function Footer() {
   return (
-    <footer id="postularse" className="border-t border-gray-100 bg-white">
-      <div className="page-container flex flex-col items-center gap-4 px-4 py-10 text-center sm:px-6">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-elarbol-600 to-emerald-400">
-          <TreeDeciduous className="h-6 w-6 text-white" />
+    <footer className="border-t border-live-border/40 bg-live-bg/80">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-live-cyan to-live-purple font-display font-black text-live-bg">
+              L
+            </span>
+            <span className="font-display font-bold tracking-widest">
+              LIVE<span className="text-live-cyan">COINS</span>
+            </span>
+          </div>
+
+          <nav className="flex flex-wrap justify-center gap-6 text-sm text-white/50">
+            <a href="#inicio" className="hover:text-live-cyan transition-colors">Inicio</a>
+            <a href="#juegos" className="hover:text-live-cyan transition-colors">Juegos</a>
+            <a href="#overlays" className="hover:text-live-cyan transition-colors">Overlays</a>
+            <a href="#planes" className="hover:text-live-cyan transition-colors">Planes</a>
+            <a href={PANEL_URL} target="_blank" rel="noopener noreferrer" className="hover:text-live-cyan transition-colors">
+              Panel web
+            </a>
+          </nav>
+
+          <p className="text-xs text-white/30 text-center md:text-right">
+            © {new Date().getFullYear()} Livecoins. TikTok LIVE interactivo.
+          </p>
         </div>
-        <p className="text-sm text-gray-500">
-          © {new Date().getFullYear()} Agencia ELÁRBOL. Todos los derechos reservados.
-        </p>
-        <a
-          href="mailto:info@agenciaelarbol.com"
-          className="rounded-full bg-gradient-to-r from-elarbol-700 via-emerald-600 to-teal-500 px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:brightness-105"
-        >
-          Postularse ahora
-        </a>
       </div>
     </footer>
   );

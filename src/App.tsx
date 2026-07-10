@@ -1,14 +1,5 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { HomePage } from './pages/HomePage';
-import { ModuleDetailPage } from './pages/ModuleDetailPage';
+import { LandingPage } from './pages/LandingPage';
 
 export default function App() {
-  return (
-    <BrowserRouter basename="/proyecto-mari">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/modulo/:id" element={<ModuleDetailPage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <LandingPage />;
 }
